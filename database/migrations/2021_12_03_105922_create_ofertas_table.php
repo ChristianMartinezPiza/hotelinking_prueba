@@ -37,6 +37,12 @@ class CreateOfertasTable extends Migration
                 'title' => 'Cupón para alquilar una bicicleta durante una hora',
             )
         );
+
+        DB::table('ofertas')->insert(
+            array(
+                'title' => 'Viaje para 2 personas a Madrid por 50€',
+            )
+        );
     }
 
     /**

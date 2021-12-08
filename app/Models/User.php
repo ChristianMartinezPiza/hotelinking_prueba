@@ -43,7 +43,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function getOfertaRelation(){
-        return $this->belongsToMany(Oferta::class, 'users_ofertas', 'id', 'id');
+    public function ofertas(){
+        return $this->belongsToMany(Oferta::class, 'users_ofertas', 'user_id', 'oferta_id')->withPivot('canjeado', 'codigo');
     }
 }

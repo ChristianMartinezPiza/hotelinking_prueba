@@ -13,18 +13,19 @@ class CreateUsersOfertasTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_ofertas', function (Blueprint $table) {
-            $table->bigIncrements('id');        
-            $table->unsignedBigInteger('user_id');
+        Schema::create('users_ofertas', function (Blueprint $table) {      
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')
               ->references('id')
               ->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('oferta_id');
+            $table->bigInteger('oferta_id')->unsigned();
             $table->foreign('oferta_id')
               ->references('id')
               ->on('ofertas')->onDelete('cascade');
             $table->string('codigo')->unique();
             $table->boolean('canjeado')->default(0);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

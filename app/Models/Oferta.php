@@ -8,9 +8,11 @@ use App\Models\User;
 
 class Oferta extends Model
 {
-    use HasFactory;
+    Protected $fillable=[
+        'title'
+    ];
     
-    public function getUserRelation(){
-        return $this->belongsToMany(User::class, 'users_ofertas', 'id', 'id');
+    public function users(){
+        return $this->belongsToMany(User::class, 'users_ofertas', 'oferta_id', 'user_id')->withPivot('canjeado', 'codigo');
     }
 }
